@@ -9,54 +9,202 @@ header{position:sticky;top:0;z-index:50;background:#090b0fe8;backdrop-filter:blu
 section{margin-top:28px}h2{font-size:1.65rem;margin:0 0 8px}.lead{color:var(--mut)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.study h3{color:#ffb6ba;font-size:1.02rem;margin:0 0 6px}.study p{color:#d8e0e9}.memory{padding:15px;border:1px solid #d7192040;background:#d7192010;border-radius:13px;margin:13px 0}.call{border-left:4px solid var(--gold);background:#f4b94210;padding:12px 14px;border-radius:7px;margin:13px 0}details{background:#131820c9;border:1px solid var(--line);border-radius:13px;margin:9px 0;overflow:hidden}summary{padding:15px 17px;cursor:pointer;font-weight:850}details>div{padding:0 17px 17px;border-top:1px solid var(--line)}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line)}th{color:#ffd5d7;background:#d7192010}
 .qhead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.pill{padding:6px 10px;border-radius:99px;background:var(--p2);border:1px solid var(--line);color:var(--mut);font-size:.82rem}.tag{display:inline-block;color:#ffb7bb;background:#d7192014;border:1px solid #d7192045;padding:4px 8px;border-radius:7px;font-size:.78rem;font-weight:850}.question{font-size:1.17rem;font-weight:850;margin:13px 0}.opts{display:grid;gap:8px}.opt{width:100%;text-align:left;background:#0b0f15;color:#fff;border:1px solid var(--line);padding:12px 13px;border-radius:10px}.opt:hover{border-color:#f4b94266;transform:translateX(2px)}.opt.ok{border-color:#3ddc9780;background:#3ddc9710}.opt.no{border-color:#ff697880;background:#ff697810}.explain{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:#ffffff06}.oktxt{color:var(--green)}.notxt{color:var(--bad)}.source{color:#84909e;font-size:.78rem;margin-top:8px}.qnav{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:15px;flex-wrap:wrap}.result{display:none;text-align:center;margin-top:15px;padding:22px;border-radius:15px;background:#3ddc9710;border:1px solid #3ddc9733}.result strong{font-size:2.4rem;display:block}.hidden{display:none!important}footer{padding:25px 20px 55px;color:#7f8b99;text-align:center;border-top:1px solid var(--line)}
 @media(max-width:900px){.dash{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}.links{display:none}}@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}h1{letter-spacing:-1px}}
+
+.lesson{margin:10px 0;background:#131820e8;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.lesson summary{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 19px;font-size:1rem}
+.lesson summary b{color:#ffb8bc;letter-spacing:.3px}
+.lesson summary small{color:#7f8b99;font-size:.76rem;text-align:right}
+.lesson[open] summary{background:#d7192010;border-bottom:1px solid var(--line)}
+.lesson-body{padding:18px 20px 20px}
+.lesson-body h3{margin:0 0 8px;color:#ffd27a;font-size:1rem}
+.lesson-body ul{margin:8px 0 14px;padding-left:22px;columns:2;column-gap:35px}
+.lesson-body li{color:#dbe2ea;margin:6px 0;break-inside:avoid}
+.lesson-tip{border-left:4px solid var(--gold);background:#f4b94210;padding:11px 13px;border-radius:7px;color:#dfe5ec}
+@media(max-width:700px){.lesson summary{display:block}.lesson summary small{display:block;text-align:left;margin-top:4px}.lesson-body ul{columns:1}}
 </style></head><body>
 <header><nav><div class="brand">CBPMESP <i>•</i> Prevenção de Incêndio</div><div class="links"><button onclick="go('teoria')">Teoria</button><button onclick="go('quiz')">Quiz</button><button onclick="go('macetes')">Macetes</button><button onclick="scrollTo(0,0)">↑ Topo</button></div></nav></header>
 <div class="hero" id="top"><span class="badge">🔥 Revisão orientada para prova • 2026</span><h1>Prevenção de Incêndio<br>— Estudo Interativo</h1><p>Construído principalmente a partir da <b>Revisão Geral</b>, com apoio da Apostila, do Resumo e do “Puro Suco do Milho”. Estude a teoria, revise os números e pratique com questões comentadas.</p><div class="actions"><button class="primary" onclick="go('teoria')">Começar pela teoria ↓</button><button class="secondary" onclick="go('quiz')">Ir para o Quiz 🧠</button></div></div>
 <main class="wrap">
 <div class="dash"><div class="card"><b>🔎 Busca rápida</b><p style="color:var(--mut);margin:4px 0 9px">Pesquise CMAR, TRRF, GLP, hidrante, AVCB, UP, brigada...</p><input id="search" class="search" oninput="filter()" placeholder="Pesquisar na teoria..."></div><div class="card"><b>📈 Progresso</b><div class="progress"><i id="bar"></i></div><span id="prog" style="color:var(--mut)">0 de 64 questões respondidas</span></div></div>
-<div class="stats"><div class="card stat"><strong>20</strong><span>Capítulos da apostila</span></div><div class="card stat"><strong>64</strong><span>Questões</span></div><div class="card stat"><strong>5</strong><span>Revisões ativas</span></div><div class="card stat"><strong>4</strong><span>Elementos do fogo</span></div><div class="card stat"><strong>3</strong><span>Formas de calor</span></div></div>
+<div class="stats"><div class="card stat"><strong>20</strong><span>Aulas de teoria</span></div><div class="card stat"><strong>64</strong><span>Questões</span></div><div class="card stat"><strong>5</strong><span>Revisões ativas</span></div><div class="card stat"><strong>4</strong><span>Elementos do fogo</span></div><div class="card stat"><strong>3</strong><span>Formas de calor</span></div></div>
 <div class="tabs"><button onclick="go('teoria')">🔥 Fundamentos</button><button onclick="go('classif')">🏢 Classificação</button><button onclick="go('medidas')">🧯 Medidas</button><button onclick="go('saidas')">🚪 Saídas</button><button onclick="go('riscos')">⚠️ Riscos</button><button onclick="go('quiz')">🧠 Quiz</button></div>
 
-<section id="teoria"><h2>🔥 Fundamentos</h2><p class="lead">A lógica da prova começa pela prevenção: proteger vidas, impedir o início e dificultar a propagação.</p><div class="grid">
-<div class="study" data-search><h3>Objetivos</h3><p>Proteger prioritariamente a vida; prevenir o surgimento; dificultar propagação de fogo, calor e fumaça; permitir abandono seguro e acesso das guarnições; reduzir danos ambientais e patrimoniais.</p></div>
-<div class="study" data-search><h3>Tetraedro do fogo</h3><p><b>Combustível + comburente + calor + reação em cadeia.</b> A extinção ocorre eliminando ou reduzindo suficientemente um deles.</p></div>
-<div class="study" data-search><h3>Propagação</h3><p><b>Condução:</b> pelo material/contato. <b>Convecção:</b> gases e fumaça aquecidos. <b>Irradiação:</b> energia térmica pelo espaço, sem contato direto.</p></div>
-<div class="study" data-search><h3>Passiva × ativa</h3><p><b>Passiva:</b> não depende de acionamento; ex.: compartimentação, resistência estrutural, escadas protegidas. <b>Ativa:</b> depende de acionamento/sistema; ex.: extintores, hidrantes, alarme, detecção e sprinklers.</p></div>
-</div><div class="call"><b>Macete:</b> proteção <b>passiva segura</b> o incêndio; proteção <b>ativa detecta, alerta e combate</b>.</div>
-<details data-search><summary>📚 Pirâmide normativa</summary><div><table><tr><th>Nível</th><th>Exemplo</th><th>Função</th></tr><tr><td>Lei</td><td>LC 1.257/2015</td><td>Institui o Código Estadual.</td></tr><tr><td>Regulamento</td><td>Decreto 69.118/2024</td><td>Critérios de classificação e exigências.</td></tr><tr><td>ITs</td><td>CBPMESP</td><td>Detalham projeto, instalação e manutenção.</td></tr><tr><td>Normas técnicas</td><td>ABNT/ASTM etc.</td><td>Métodos de ensaio e requisitos complementares.</td></tr></table></div></details></section>
 
-<section id="classif"><h2>🏢 Classificação e documentação</h2><div class="memory"><b>Fórmula mental:</b> USO + ALTURA + ÁREA + CARGA → caminho para as tabelas de exigências. O material também considera lotação e riscos especiais.</div><div class="grid">
-<div class="study" data-search><h3>Ocupação</h3><p><b>Predominante:</b> uso principal. <b>Subsidiária:</b> apoio ao principal dentro dos limites. <b>Mista:</b> mais de um uso independente ou acima dos limites.</p></div>
-<div class="study" data-search><h3>Altura</h3><p>Para segurança contra incêndio, medida do piso mais baixo ocupado ao piso do último pavimento. Para saída, referência entre nível de descarga e último pavimento.</p></div>
-<div class="study" data-search><h3>Carga de incêndio</h3><p>Soma das energias caloríficas possíveis de serem liberadas pela combustão.</p></div>
-<div class="study" data-search><h3>Área construída</h3><p>Soma das áreas edificadas. Ampliação pode alterar porte, população e exigências.</p></div>
-</div><details data-search><summary>📄 Licenças e projetos</summary><div><p><b>AVCB:</b> Auto de Vistoria; <b>CLCB:</b> Certificado de Licença, procedimento simplificado; <b>TAACB:</b> Termo de Autorização para Adequação.</p><p><b>PT:</b> Projeto Técnico; <b>PTS:</b> Projeto Técnico Simplificado; <b>PTOT/PTIOT/PTOTEP:</b> formas relacionadas a ocupações temporárias conforme o material.</p></div></details><details data-search><summary>📐 PTS × PT — números importantes</summary><div><p><b>PTS:</b> até 750 m² com no máximo 3 pavimentos, ou até 1.500 m² com no máximo 6 m de altura, conforme os critérios apresentados.</p><p><b>PT:</b> entre os casos destacados: área superior a 750 m² e mais de 3 pavimentos; área superior a 1.500 m² e mais de 6 m; e sistemas como detecção, controle de fumaça, chuveiros automáticos, espuma e resfriamento.</p></div></details></section>
+<section id="teoria">
+<h2>📚 Teoria completa — 20 aulas</h2>
+<p class="lead">Agora sim no formato de aula: cada tópico abre e mostra um resumo dos principais assuntos que você precisa dominar. A organização segue a estrutura da Apostila de Prevenção de Incêndios, enquanto a Revisão Geral orienta o que merece maior atenção para a prova.</p>
+<div class="memory"><b>Como estudar:</b> abra uma aula, leia o resumo, confira os pontos de atenção e só depois vá para o Quiz. A ideia é transformar o site em uma pequena apostila interativa.</div>
+<div class="call"><b>🎯 Prioridade:</b> as questões e os pontos destacados pelo professor na Revisão Geral ficam integrados às aulas correspondentes.</div>
 
-<section id="medidas"><h2>🧯 Medidas de segurança</h2><div class="grid">
-<div class="study" data-search><h3>CMAR</h3><p>Controla propagação de chama e geração de fumaça em materiais de acabamento/revestimento. A classe depende da ocupação, local de aplicação e uso.</p></div>
-<div class="study" data-search><h3>TRRF</h3><p>Tempo Requerido de Resistência ao Fogo. <b>CMAR = reação ao fogo do material; TRRF = resistência ao fogo do elemento por tempo.</b></p></div>
-<div class="study" data-search><h3>Compartimentação</h3><p><b>Horizontal:</b> limita no mesmo pavimento. <b>Vertical:</b> impede propagação por shafts, fachadas, escadas, dutos e aberturas entre pavimentos.</p></div>
-<div class="study" data-search><h3>Extintores</h3><p><b>Baixo 25 m • Médio 20 m • Alto 15 m</b> de caminhamento. É percurso real até o extintor, não raio imaginário.</p></div>
-<div class="study" data-search><h3>Hidrantes</h3><p>Precisam de reserva técnica, bomba, tubulações, recalque e acessórios. Ponto: mangueira, esguicho, válvula e engates compatíveis.</p></div>
-<div class="study" data-search><h3>Iluminação</h3><p><b>3 lux</b> em local plano e <b>5 lux</b> em desnível; até 15 m entre pontos e até 7,5 m da parede, conforme condições da IT.</p></div>
-</div><div class="call"><b>Frase da revisão:</b> alarme, iluminação e sinalização precisam funcionar juntos.</div></section>
-
-<section id="saidas"><h2>🚪 Saídas, brigada e plano</h2><div class="grid">
-<div class="study" data-search><h3>Saída de emergência</h3><p>Caminho contínuo, desobstruído, iluminado e sinalizado até local seguro. Envolve portas, corredores, escadas, rampas, guardas e corrimãos.</p></div>
-<div class="study" data-search><h3>Dimensionamento</h3><p><b>N = P/C</b>. N = unidades de passagem, arredondado para cima; P = população; C = capacidade. <b>1 UP = 0,55 m.</b></p></div>
-<div class="study" data-search><h3>Brigada</h3><p>Antes: analisar riscos, orientar ocupantes, comunicar irregularidades e participar de simulados. Durante: alertar, orientar abandono, combater princípio e prestar primeiros socorros.</p></div>
-<div class="study" data-search><h3>Plano de emergência</h3><p>Define responsabilidades, acionamento, abandono, combate inicial, comunicação, ponto de encontro e apoio ao CBPMESP. Mudança de layout/produto/processo exige revisão.</p></div>
-</div><div class="call"><b>Exemplo:</b> P=180 e C=75 → N=2,4 → 3 UP → 3×0,55 = <b>1,65 m</b>.</div></section>
-
-<section id="riscos"><h2>⚠️ Riscos específicos e edificações existentes</h2><div class="grid">
-<div class="study" data-search><h3>GLP</h3><p>É mais pesado que o ar e pode acumular em locais baixos/confinados; o material enfatiza áreas ventiladas e adequadas.</p></div>
-<div class="study" data-search><h3>Produtos perigosos</h3><p>Sem FDS, falta informação rápida sobre risco, EPI, contenção e resposta. Sequência para líquidos inflamáveis: <b>identificar → ventilar → conter → separar → proteger</b>.</p></div>
-<div class="study" data-search><h3>Edificações existentes</h3><p>É necessário comprovar a condição. Ampliação, aumento de altura ou mudança de ocupação pode exigir parâmetros vigentes.</p></div>
-<div class="study" data-search><h3>Vistoria integrada</h3><p>Classificação; documentos; saídas; combate; alarme/iluminação/sinalização; riscos específicos. Conclusão: <b>fato + regra + atende/não atende + correção</b>.</p></div>
-</div></section>
-
-<section id="macetes"><h2>🎯 10 frases para memorizar</h2><div class="memory"><ol><li>Prevenção protege a vida antes do patrimônio.</li><li>Classificação correta vem antes das exigências.</li><li>Passiva segura; ativa detecta, alerta e combate.</li><li>Saída é caminho contínuo até local seguro.</li><li>Extintor é por caminhamento, não raio.</li><li>Hidrante sem acessório ou bomba sem funcionamento não resolve emergência.</li><li>Alarme, iluminação e sinalização precisam funcionar juntos.</li><li>Brigada e plano precisam treinamento, simulado e atualização.</li><li>GLP, GN, líquidos e produtos perigosos exigem controle específico.</li><li>Licença é condição a manter; mudança/inoperância exige reavaliação.</li></ol></div></section>
-
+<details class="lesson" data-search>
+<summary><span><b>AULA 01</b> — Prevenção de Incêndio — Fundamentos</span><small>IT 02/2025 • Decreto 69.118/24 • LC 1.257/2015</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Importância da prevenção e riscos da fumaça</li><li>Pirâmide normativa e objetivos do regulamento</li><li>Tetraedro do fogo: combustível, comburente, calor e reação em cadeia</li><li>Condução, convecção e irradiação</li><li>Proteção passiva × proteção ativa</li><li>Organização do Serviço de Segurança Contra Incêndio (SSCI)</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 02</b> — Documentação e Licenças</span><small>IT 01/2025 • Procedimentos administrativos</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>AVCB, CLCB e TAACB: finalidade e diferença</li><li>PT, PTS, PTOT e PTOTEP</li><li>PT novo, substituição e atualização</li><li>Documentação e raciocínio orientador</li><li>FAT, Comissões Técnicas e ATP</li><li>Funções do auxiliar da Seção de Atividades Técnicas</li><li>Código Estadual e Poder de Polícia</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 03</b> — Classificação das Edificações</span><small>Decreto 69.118/2024</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Classificação pela ocupação/uso</li><li>Ocupação predominante, subsidiária e mista</li><li>Classificação pela altura</li><li>Classificação pela área</li><li>Carga de incêndio: baixo, médio e alto</li><li>Mudança de ocupação, ampliação e setorização</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 04</b> — Controle de Materiais de Acabamento e Revestimento — CMAR</span><small>IT 10/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>O que o CMAR controla e por que é importante</li><li>Ensaios e parâmetros: NBR 9442 e ASTM E-662</li><li>Classes do CMAR e leitura da classificação</li><li>Aplicação em pisos, paredes/divisórias, tetos/forros, coberturas e fachadas</li><li>Verificação em vistoria, laudos e documentação</li><li>Diferença fundamental entre CMAR e TRRF</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 05</b> — Saídas de Emergência</span><small>IT 11/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Saída como sistema completo: acesso, corredores, portas, escadas/rampas, descarga e local seguro</li><li>População de projeto e critérios de ocupação</li><li>Unidade de passagem: 1 UP = 0,55 m</li><li>Dimensionamento: N = P/C e arredondamento para cima</li><li>Tipos de escada: NE, EP, PF e pressurizada</li><li>Portas, rotas de fuga, sinalização, iluminação e inspeção</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 06</b> — Compartimentação — Barreiras contra o Fogo</span><small>IT 09/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Compartimentação horizontal</li><li>Compartimentação vertical</li><li>Portas corta-fogo e aberturas</li><li>Controle de fumaça</li><li>Shafts, dutos, fachadas e caminhos de propagação</li><li>Importância da continuidade da barreira</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 07</b> — Isolamento de Risco e Segurança Estrutural</span><small>ITs aplicáveis • TRRF</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Isolamento de risco por distância</li><li>Isolamento por elemento construtivo</li><li>Resistência ao fogo dos elementos</li><li>TRRF — Tempo Requerido de Resistência ao Fogo</li><li>Diferença entre resistência ao fogo e reação ao fogo</li><li>Relação entre compartimentação, isolamento e segurança estrutural</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 08</b> — Brigada de Incêndio</span><small>IT 17/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Ações de prevenção antes da emergência</li><li>Análise de riscos e orientação dos ocupantes</li><li>Treinamentos e simulados</li><li>Ações durante a emergência</li><li>Alerta, abandono, combate ao princípio e primeiros socorros</li><li>Integração da brigada com o Plano de Emergência</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 09</b> — Plano de Emergência e Gerenciamento de Riscos</span><small>IT 16/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Sequência lógica de resposta</li><li>Identificação de riscos e análise de cenários</li><li>Responsabilidades e procedimentos</li><li>Planejamento do abandono</li><li>Comunicação e ponto de encontro</li><li>Simulados, avaliação e atualização do plano</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 10</b> — Alarme e Detecção de Incêndio</span><small>IT 19/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Componentes do sistema</li><li>Central e acionadores</li><li>Detecção automática e acionamento manual</li><li>Avisadores e percepção do alarme</li><li>Manutenção e condições de funcionamento</li><li>Integração com outras medidas de segurança</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 11</b> — Iluminação de Emergência</span><small>IT 18/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Finalidade da iluminação de emergência</li><li>Valores básicos de iluminamento</li><li>Local plano × local com desnível</li><li>Distâncias entre pontos e relação com paredes</li><li>Sistema permanente × não permanente</li><li>Verificação da condição de funcionamento</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 12</b> — Sinalização de Emergência</span><small>IT 20/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Quatro categorias básicas de sinalização</li><li>Proibição</li><li>Alerta</li><li>Orientação e salvamento</li><li>Equipamentos de combate e alarme</li><li>Regras práticas, altura e distâncias</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 13</b> — Extintores de Incêndio</span><small>IT 21/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Classes de incêndio e agentes extintores</li><li>Escolha do agente conforme a classe de fogo</li><li>Instalação e acessibilidade</li><li>Sinalização e desobstrução</li><li>Distância máxima de caminhamento</li><li>Manutenção e condição de uso</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 14</b> — Hidrantes e Mangotinhos</span><small>IT 22/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Diferença entre hidrante e mangotinho</li><li>Componentes essenciais do ponto</li><li>Mangueira, esguicho, válvula e engates</li><li>Reserva de incêndio</li><li>Vazão e pressão</li><li>Bomba, tubulação, recalque e condições de operação</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 15</b> — Acesso de Viaturas do Corpo de Bombeiros</span><small>IT aplicável</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Acesso e aproximação das viaturas</li><li>Condições para operação das equipes</li><li>Rotas e áreas necessárias ao atendimento</li><li>Verificação das condições de acesso</li><li>Relação entre acesso operacional e segurança da edificação</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 16</b> — GLP, Gás Natural, Fogos de Artifício e Produtos Perigosos</span><small>ITs 25, 28, 29 e 32/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Características e riscos do GLP</li><li>Gás natural e gases inflamáveis</li><li>Fogos de artifício e riscos específicos</li><li>Produtos perigosos e informações de segurança</li><li>FDS e preparação para resposta</li><li>Identificar → ventilar → conter → separar → proteger</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 17</b> — Líquidos Inflamáveis e Combustíveis</span><small>IT aplicável</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Ponto de fulgor e relação com o risco</li><li>Princípios de proteção</li><li>Identificação e controle de fontes de ignição</li><li>Ventilação e contenção</li><li>Separação de incompatíveis</li><li>Sistemas de proteção e atuação da brigada</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 18</b> — Edificações Existentes — Adaptação</span><small>IT 43/2025</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Linha histórica dos regulamentos</li><li>Diferença entre edificação existente sem mudança e com mudança</li><li>Ampliação com ou sem compartimentação</li><li>Mudança de ocupação</li><li>Quando avaliar parâmetros vigentes</li><li>Documentação necessária para caracterizar a condição existente</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 19</b> — Desenho Arquitetônico, Simbologia e Leitura de Plantas</span><small>Leitura de projeto de segurança</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Planta baixa</li><li>Corte</li><li>Implantação</li><li>Escala e cotas</li><li>Símbolos de incêndio</li><li>Leitura das rotas, equipamentos, acessos e demais medidas representadas</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<details class="lesson" data-search>
+<summary><span><b>AULA 20</b> — Vistoria, Manutenção e Alterações após o Licenciamento</span><small>IT 01/2025 • manutenção das condições aprovadas</small></summary>
+<div class="lesson-body">
+<h3>📌 O que você precisa saber</h3>
+<ul><li>Licença não é certificado eterno</li><li>Manutenção preventiva das medidas de segurança</li><li>Mudança de leiaute</li><li>Mudança de ocupação e ampliação</li><li>Áreas com risco específico</li><li>Conclusão técnica: fato observado + regra aplicável + atende/não atende + correção</li></ul>
+<div class="lesson-tip"><b>💡 Foco de prova:</b> depois de estudar esta aula, faça as questões do Quiz relacionadas ao tema. As alternativas recebem justificativa individual quando clicadas.</div>
+</div>
+</details>
+<div class="memory">
+<b>🧠 Roteiro rápido de revisão:</b>
+01 Fundamentos → 02 Documentação → 03 Classificação → 04 CMAR → 05 Saídas →
+06 Compartimentação → 07 Isolamento/TRRF → 08 Brigada → 09 Plano →
+10 Alarme → 11 Iluminação → 12 Sinalização → 13 Extintores → 14 Hidrantes →
+15 Viaturas → 16 Riscos específicos → 17 Líquidos inflamáveis →
+18 Edificações existentes → 19 Plantas → 20 Vistoria e manutenção.
+</div>
+</section>
 <section id="quiz"><div class="qhead"><div><h2>🧠 Quiz — 64 questões comentadas</h2><span style="color:var(--mut)">Clique em qualquer alternativa: você verá a justificativa daquela opção e, se errar, a explicação da correta.</span></div><span class="pill" id="score">0 acertos</span></div><div class="qbox" id="qbox"></div><div class="result" id="result"><strong id="pct">0%</strong><span id="rtext"></span><br><br><button class="primary" onclick="resetQuiz()">Refazer quiz</button></div></section>
 </main>
 <footer><b>Prevenção de Incêndio — CBPMESP | Estudo Interativo</b><br>Fonte principal: Revisão Geral fornecida pelo usuário. Apoio: Apostila, Resumo e “Puro Suco do Milho”.<br>Material de estudo baseado nos arquivos fornecidos.</footer>
